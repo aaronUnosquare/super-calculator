@@ -1,0 +1,115 @@
+/* ── Calculator shell ───────────────────────────────────────────────────── */
+
+/* Centers the calculator on the page */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #1a1a2e;
+}
+
+.calculator {
+  width: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  background: #16213e;
+}
+
+/* ── Display ────────────────────────────────────────────────────────────── */
+
+.display {
+  background: #0f3460;
+  padding: 24px 20px 16px;
+  text-align: right;
+  min-height: 90px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.display__value {
+  color: #e2e8f0;
+  font-size: 2.8rem;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: -1px;
+  /* Shrink text if the number gets too wide */
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Button grid ────────────────────────────────────────────────────────── */
+
+.buttons {
+  display: grid;
+  /* 4 equal columns */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #0a0a1a; /* gap color */
+}
+
+/* ── Base button ────────────────────────────────────────────────────────── */
+
+.btn {
+  background: #1a1a3e;
+  color: #e2e8f0;
+  border: none;
+  padding: 20px;
+  font-size: 1.4rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.btn:hover {
+  background: #2a2a5e;
+}
+
+.btn:active {
+  background: #3a3a7e;
+}
+
+/* ── Utility buttons (C, +/-, %) ────────────────────────────────────────── */
+
+.btn--utility {
+  background: #2d3561;
+  color: #a8b2ff;
+}
+
+.btn--utility:hover {
+  background: #3d4571;
+}
+
+/* ── Operator buttons (÷, ×, −, +) ─────────────────────────────────────── */
+
+.btn--operator {
+  background: #e94560;
+  color: #fff;
+}
+
+.btn--operator:hover {
+  background: #ff6b81;
+}
+
+/* ── Zero button (spans 2 columns) ─────────────────────────────────────── */
+
+.btn--zero {
+  grid-column: span 2;
+  text-align: left;
+  padding-left: 28px;
+}
+
+/* ── Equals button ──────────────────────────────────────────────────────── */
+
+.btn--equals {
+  background: #e94560;
+  color: #fff;
+}
+
+.btn--equals:hover {
+  background: #ff6b81;
+}

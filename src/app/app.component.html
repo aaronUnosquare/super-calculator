@@ -1,0 +1,75 @@
+<!--
+  app.component.html — the template for our calculator.
+
+  In Angular, the template is the HTML that describes what is shown on screen.
+  We use two special Angular features here:
+
+  ① Property binding  [class.active]="..."
+      Adds or removes the CSS class depending on a boolean expression.
+
+  ② Event binding  (click)="someMethod()"
+      Calls a method in the component when the user clicks the element.
+-->
+
+<div class="calculator">
+
+  <!-- ── Display ─────────────────────────────────────────────────────────── -->
+  <!--
+    {{ display }} is called "interpolation" — Angular replaces it with the
+    value of the 'display' property from our component class.
+  -->
+  <div class="display">
+    <span class="display__value">{{ display }}</span>
+  </div>
+
+  <!-- ── Button grid ──────────────────────────────────────────────────────── -->
+  <div class="buttons">
+
+    <!-- Row 1: utility buttons -->
+    <button class="btn btn--utility" (click)="pressClear()">C</button>
+
+    <!--
+      EXERCISE 1 — this button calls pressToggleSign(), which you need to implement
+      in app.component.ts. When it works the displayed number should flip sign.
+    -->
+    <button class="btn btn--utility" (click)="pressToggleSign()">+/-</button>
+
+    <!--
+      EXERCISE 2 — this button calls pressPercent(), which you need to implement
+      in app.component.ts. When it works the number should be divided by 100.
+    -->
+    <button class="btn btn--utility" (click)="pressPercent()">%</button>
+
+    <button class="btn btn--operator" (click)="pressOperator('/')">÷</button>
+
+    <!-- Row 2: digits 7-9 + multiply -->
+    <button class="btn" (click)="pressDigit('7')">7</button>
+    <button class="btn" (click)="pressDigit('8')">8</button>
+    <button class="btn" (click)="pressDigit('9')">9</button>
+    <button class="btn btn--operator" (click)="pressOperator('*')">×</button>
+
+    <!-- Row 3: digits 4-6 + subtract -->
+    <button class="btn" (click)="pressDigit('4')">4</button>
+    <button class="btn" (click)="pressDigit('5')">5</button>
+    <button class="btn" (click)="pressDigit('6')">6</button>
+    <button class="btn btn--operator" (click)="pressOperator('-')">−</button>
+
+    <!-- Row 4: digits 1-3 + add -->
+    <button class="btn" (click)="pressDigit('1')">1</button>
+    <button class="btn" (click)="pressDigit('2')">2</button>
+    <button class="btn" (click)="pressDigit('3')">3</button>
+    <button class="btn btn--operator" (click)="pressOperator('+')">+</button>
+
+    <!-- Row 5: zero (wide), decimal, equals -->
+    <!--
+      [class.btn--operator] is a conditional class binding.
+      The class is added when this.operator === '+' (i.e. + is the active op).
+      This highlights whichever operator was last pressed.
+      Right now it's wired to '+'; you could extend it to highlight all operators.
+    -->
+    <button class="btn btn--zero" (click)="pressDigit('0')">0</button>
+    <button class="btn" (click)="pressDigit('.')">.</button>
+    <button class="btn btn--equals" (click)="pressEquals()">=</button>
+
+  </div>
+</div>
