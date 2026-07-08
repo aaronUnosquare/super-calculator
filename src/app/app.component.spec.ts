@@ -230,7 +230,10 @@ describe('AppComponent (Calculator)', () => {
   // 🎯 YOUR TURN — after implementing EXERCISE 2:
   //   display shows "50" → press % → display should show "0.5"
   it('should divide the displayed number by 100 when % is pressed', () => {
-    pending('Student exercise — implement pressPercent() first, then write this test');
+    component.pressDigit('5');
+    component.pressDigit('0');
+    component.pressPercent();
+    expect(component.display).toBe('0.5');
   });
 
 });

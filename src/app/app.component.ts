@@ -161,10 +161,8 @@ export class AppComponent {
    * Hint: divide the current display value by 100, then update this.display.
    */
   pressPercent(): void {
-    // TODO: implement me!
-    // Step 1 – convert this.display to a number
-    // Step 2 – divide by 100
-    // Step 3 – assign the result back to this.display (as a string)
+    const value = parseFloat(this.display) / 100; // Steps 1 & 2
+    this.display = value.toString();              // Step 3
   }
 
 
