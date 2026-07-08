@@ -15,6 +15,9 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  // Aplica la clase 'light' al elemento host (app-root) cuando isLightMode es
+  // true, para que la regla :host.light aclare el fondo de toda la página.
+  host: { '[class.light]': 'isLightMode' },
 })
 export class AppComponent {
 
@@ -132,8 +135,7 @@ export class AppComponent {
    * will update automatically once you toggle the property.
    */
   toggleTheme(): void {
-    // TODO: implement me!
-    // Step 1 – flip this.isLightMode to its opposite value (use the ! operator)
+    this.isLightMode = !this.isLightMode;
   }
 
   /**

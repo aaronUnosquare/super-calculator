@@ -144,21 +144,40 @@
 */
 
 :host.light {
-  /* TODO: change the page background to a light color */
+  background: #f0f0f0;
 }
 
 .calculator.light {
-  /* TODO: change the calculator background to a light color */
+  background: #ffffff;
 }
 
 .calculator.light .display {
-  /* TODO: change the display background and text color */
+  background: #e0e0e0;
+}
+
+/* El color del número vive en .display__value, no en .display */
+.calculator.light .display__value {
+  color: #1a1a1a;
 }
 
 .calculator.light .btn {
-  /* TODO: change the button background and text color */
+  background: #d4d4d4;
+  color: #1a1a1a;
+}
+
+.calculator.light .btn:hover {
+  background: #c8c8c8;
+}
+
+.calculator.light .btn:active {
+  background: #bcbcbc;
 }
 
 .calculator.light .btn--utility {
-  /* TODO: style the utility buttons for light mode */
+  background: #c0c0c0;
+  color: #333333;
+}
+
+.calculator.light .btn--utility:hover {
+  background: #b4b4b4;
 }
