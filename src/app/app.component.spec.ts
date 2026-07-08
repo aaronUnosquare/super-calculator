@@ -59,19 +59,34 @@ describe('AppComponent (Calculator)', () => {
 
   // 🎯 YOUR TURN — pressing 1 then 2 must show "12", not just "2"
   it('should handle multi-digit numbers', () => {
-    // Hint: call pressDigit twice, then detectChanges, then read the display
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('1');
+    component.pressDigit('2');
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toBe('12');
   });
 
   // 🎯 YOUR TURN — pressing "." should add a decimal point to the display
   it('should append a decimal point when "." is pressed', () => {
-    // Hint: press a digit first, then press '.', check that display contains '.'
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('1');
+    component.pressDigit('.');
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toContain('.');
   });
 
   // 🎯 YOUR TURN — pressing "." twice should not produce "1.." on the display
   it('should not allow more than one decimal point', () => {
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('1');
+    component.pressDigit('.');
+    component.pressDigit('.');
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).not.toContain('..');
+    expect(displayEl.textContent.trim()).toBe('1.');
   });
 
   // ─── Clear ───────────────────────────────────────────────────────────────────
@@ -88,10 +103,13 @@ describe('AppComponent (Calculator)', () => {
 
   // 🎯 YOUR TURN — Clear should also cancel any pending operation
   it('should cancel any pending operation when C is pressed', () => {
-    // Hint: press a digit, an operator, another digit, then Clear.
-    // After clear, the internal state (firstOperand, operator) should be reset.
-    // Check component.firstOperand === null and component.operator === null
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('5');
+    component.pressOperator('+');
+    component.pressDigit('3');
+    component.pressClear();
+
+    expect(component.firstOperand).toBeNull();
+    expect(component.operator).toBeNull();
   });
 
   // ─── Addition ────────────────────────────────────────────────────────────────
@@ -112,19 +130,40 @@ describe('AppComponent (Calculator)', () => {
 
   // 🎯 YOUR TURN — 9 - 4 = 5
   it('should subtract two numbers correctly', () => {
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('9');
+    component.pressOperator('-');
+    component.pressDigit('4');
+    component.pressEquals();
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toBe('5');
   });
 
   // 🎯 YOUR TURN — 3 - 7 should give a negative result
   it('should return a negative result when the difference is negative', () => {
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('3');
+    component.pressOperator('-');
+    component.pressDigit('7');
+    component.pressEquals();
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toBe('-4');
   });
 
   // ─── Multiplication ───────────────────────────────────────────────────────────
 
   // 🎯 YOUR TURN — 6 × 7 = 42
   it('should multiply two numbers correctly', () => {
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('6');
+    component.pressOperator('*');
+    component.pressDigit('7');
+    component.pressEquals();
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toBe('42');
   });
 
   // ✅ Anything × 0 = 0
@@ -156,7 +195,14 @@ describe('AppComponent (Calculator)', () => {
 
   // 🎯 YOUR TURN — 7 ÷ 2 = 3.5 (decimal result)
   it('should return a decimal when division is not exact', () => {
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('7');
+    component.pressOperator('/');
+    component.pressDigit('2');
+    component.pressEquals();
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toBe('3.5');
   });
 
   // ✅ Division by zero — the app shows "0" instead of crashing
@@ -177,7 +223,16 @@ describe('AppComponent (Calculator)', () => {
   //   press 2, press +, press 3, press *, press 4, press = → result should be 20
   //   (because 2+3=5, then 5*4=20)
   it('should chain operations without pressing "=" in between', () => {
-    pending('Student exercise — remove this line and write the test');
+    component.pressDigit('2');
+    component.pressOperator('+');
+    component.pressDigit('3');
+    component.pressOperator('*'); // triggers 2+3=5 before storing '*'
+    component.pressDigit('4');
+    component.pressEquals();
+    fixture.detectChanges();
+
+    const displayEl = fixture.nativeElement.querySelector('.display__value');
+    expect(displayEl.textContent.trim()).toBe('20');
   });
 
   // ─── EXERCISE 1 — pressToggleSign() ──────────────────────────────────────────
