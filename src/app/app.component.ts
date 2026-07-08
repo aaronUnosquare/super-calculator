@@ -148,10 +148,8 @@ export class AppComponent {
    * Remember to handle the edge case where the display is '0'.
    */
   pressToggleSign(): void {
-    // TODO: implement me!
-    // Step 1 – convert this.display to a number
-    // Step 2 – multiply by -1
-    // Step 3 – assign the result back to this.display (as a string)
+    const value = parseFloat(this.display) * -1;      // Steps 1 & 2
+    this.display = value === 0 ? '0' : value.toString(); // Step 3 + edge case (avoid '-0')
   }
 
   /**
